@@ -1,5 +1,8 @@
 type Query {
-    getOrderforUser: [Order!]!
+    getOrderforUser(
+        page: Int = 1,
+        limit: Int = 5,
+    ): [Order!]!
 }
 
 type Order {

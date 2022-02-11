@@ -4,9 +4,9 @@ import res from '../../utils/postgres.js';
 
 export default {
     Query: {
-        getOrderforUser: async (_, p, { user_id }) => {
+        getOrderforUser: async (_, { page, limit }, { user_id }) => {
             console.log(user_id)
-            let result = await res.fetchAll(sqlQuery.ordersForUserUnPaid, user_id)
+            let result = await res.fetchAll(sqlQuery.ordersForUserUnPaid, user_id, page * limit - limit, limit)
             return result
         }
     },

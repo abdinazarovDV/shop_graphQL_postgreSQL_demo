@@ -23,6 +23,7 @@ type User {
     password: Password!,
     contact: Contact!,
     email: String!,
+    role: Int!,
 }
 
 type Response {

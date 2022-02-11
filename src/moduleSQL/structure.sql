@@ -4,12 +4,14 @@ create database net_shop;
 create extension pgcrypt;
 
 drop table if exists categories cascade;
+drop table if exists products cascade;
+drop table if exists users cascade;
+drop table if exists orders cascade;
 create table categories (
     category_id serial primary key,
     category_name varchar(35) not null
 );
 
-drop table if exists products cascade;
 create table products (
     category_id int references categories(category_id) on delete cascade,
     product_id serial primary key,
@@ -20,7 +22,6 @@ create table products (
     picture varchar(55) not null
 );
 
-drop table if exists users cascade;
 create table users (
     user_id serial primary key,
     username varchar(25) not null,
@@ -30,7 +31,6 @@ create table users (
     role int default 2
 );
 
-drop table if exists orders cascade;
 create table orders (
     order_id serial primary key,
     user_id int references users(user_id),

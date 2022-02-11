@@ -1,12 +1,16 @@
 type Query {
     products(
-        product_name: String,
-        category_id: ID,
-        product_id: ID
+        product_name: String = "",
+        category_id: ID = 0,
+        product_id: ID = 0,
+        page: Int = 1,
+        limit: Int = 5
     ): [Product!]!,
 
     categories(
-        category_id: ID,
+        category_id: ID = 0,
+        page: Int = 1,
+        limit: Int = 5
     ): [Category!]!
 }
 
@@ -21,5 +25,5 @@ type Product {
 
 type Category {
     category_id: ID!,
-    category_name: String!
+    category_name: String!    
 }

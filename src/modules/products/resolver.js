@@ -3,14 +3,13 @@ import res from '../../utils/postgres.js';
 
 export default {
     Query: {
-        products: async (_, { product_id = 0, product_name = "", category_id = 0 }) => {
-            let result = await res.fetchAll(sqlQuery.products, product_id, product_name, category_id)
+        products: async (_, { product_id, product_name, category_id, page, limit }) => {
+            let result = await res.fetchAll(sqlQuery.products, product_id, product_name, category_id, page * limit - limit, limit)
             return result
         },
 
-        categories: async (_, { category_id = 0 }) => {
-            let result = await res.fetchAll(sqlQuery.categories, category_id)
-            console.log(result);
+        categories: async (_, { category_id, page, limit }) => {
+            let result = await res.fetchAll(sqlQuery.categories, category_id, page * limit - limit, limit)
             return result
         }
     },

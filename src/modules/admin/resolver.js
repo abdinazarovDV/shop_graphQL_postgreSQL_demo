@@ -11,8 +11,8 @@ import res from '../../utils/postgres.js';
 export default {
 
     Query: {
-        ordersForAdmin: async (_, { order_id, user_id, username, contact, product_id, product_name, price, category_id }) => {
-            let result = await res.fetchAll(sqlQuerySel.ordersForAdmin, order_id, user_id, username, contact, product_id, product_name, price, category_id)
+        ordersForAdmin: async (_, { order_id, user_id, username, contact, product_id, product_name, price, category_id, page, limit }) => {
+            let result = await res.fetchAll(sqlQuerySel.ordersForAdmin, order_id, user_id, username, contact, product_id, product_name, price, category_id, page * limit - limit, limit)
             // sorted with time desc (milliseconds)
             return {
                 status: 200,
@@ -33,6 +33,11 @@ export default {
                 total: totalMoney,
                 data: result
             }
+        },
+
+        users: async (_, { user_id, username, contact, email, page, limit }) => {
+            let result = await res.fetchAll(sqlQuerySel.users, user_id, username, contact, email, page * limit - limit, limit)
+            return result
         }
     },
 

@@ -9,12 +9,23 @@ type Query {
         product_id: ID = 0,
         product_name: String = "",
         price: Int = 0,
-        category_id: ID = 0
+        category_id: ID = 0,
+        page: Int = 1,
+        limit: Int = 5
     ): Any,
 
     totalMoney(
         product_id: ID
-    ): Any
+    ): Any,
+
+    users(
+        user_id: ID,
+        username: String = "",
+        contact: Contact = "",
+        email: String = "",
+        page: Int = 1,
+        limit: Int = 5
+    ): [User!]!
 }
 
 type Mutation {
@@ -46,7 +57,7 @@ type Mutation {
         short_desc: String = "",
         long_desc: String = "",
         product_name: String = "",
-        file: Upload
+        file: Upload,
         category_id: ID = 0,
     ): Any,
 

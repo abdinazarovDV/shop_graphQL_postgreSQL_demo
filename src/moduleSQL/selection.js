@@ -18,6 +18,7 @@ export default {
                 when $3 > 0 then c.category_id = $3
                 else true
             end
+        offset $4 limit $5
     `,
 
     categories: `
@@ -29,6 +30,7 @@ export default {
                 when $1 > 0 then c.category_id = $1
                 else true
             end
+        offset $2 limit $3
     `,
 
     ordersForUserUnPaid: `
@@ -50,6 +52,7 @@ export default {
             case
                 when 1 > 0 then o.is_paid = 'false'
             end
+        offset $2 limit $3
     `,
 
     ordersForAdmin: `
@@ -99,10 +102,29 @@ export default {
                 else true
             end
         order by o.time desc
+        offset $9 limit $10
     `,
 
     users: `
-        select * from users;
+        select * from users as u
+        where
+            case
+                when $1 > 0 then u.user_id = $1
+                else true
+            end and
+            case
+                when length($2) > 0 then u.username = $2
+                else true
+            end and
+            case
+                when length($3) > 0 then u.contact = $3
+                else true
+            end and
+            case
+                when length($4) > 0 then u.email = $4
+                else true
+            end
+        offset $5 limit $6
     `,
 
     totalMoney: `

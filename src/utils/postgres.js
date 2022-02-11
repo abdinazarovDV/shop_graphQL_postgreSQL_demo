@@ -2,11 +2,10 @@ import pkg from 'pg';
 const { Pool } = pkg;
 
 const pool = new Pool({
-    user: process.env.PG_USER,
-    password: process.env.PG_PASSWORD,
-    port: process.env.PG_PORT,
-    host: process.env.PG_HOST,
-    database: process.env.PG_DATABASE,
+    user: 'btlbieig',
+    password: 'gWX2V0LacP4zqtC7iGlza5RJJb4RgKK6',
+    host: 'tyke.db.elephantsql.com',
+    database: 'btlbieig',
 })
 
 async function fetch(query, ...params) {
@@ -20,7 +19,6 @@ async function fetch(query, ...params) {
 }
 
 async function fetchAll(query, ...params) {
-    console.log(params)
     const client = await pool.connect()
     try {
         const { rows } = await client.query(query, params.length ? params : null)
