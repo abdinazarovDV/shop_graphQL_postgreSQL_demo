@@ -14,6 +14,11 @@ export default {
         ordersForAdmin: async (_, { order_id, user_id, username, contact, product_id, product_name, price, category_id, page, limit }) => {
             let result = await res.fetchAll(sqlQuerySel.ordersForAdmin, order_id, user_id, username, contact, product_id, product_name, price, category_id, page * limit - limit, limit)
             // sorted with time desc (milliseconds)
+            if (result) {
+                result = result.map(el => {
+                    el.time = new Date(el.time)
+                })
+            }
             return {
                 status: 200,
                 data: result
