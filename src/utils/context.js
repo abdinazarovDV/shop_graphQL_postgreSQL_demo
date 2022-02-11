@@ -8,7 +8,7 @@ export default function ({ req }) {
     ) {
         let { token } = req.headers
         let { user_id, agent } = Token.verify(token)
-
+        if (!req.headers['user-agent'] == agent) throw new Error("Anather user")
         return {
             user_id
         }
