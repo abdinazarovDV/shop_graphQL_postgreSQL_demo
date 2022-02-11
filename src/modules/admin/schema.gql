@@ -15,7 +15,9 @@ type Query {
     ): Any,
 
     totalMoney(
-        product_id: ID
+        product_id: ID,
+        page: Int = 1,
+        limit: Int = 5
     ): Any,
 
     users(

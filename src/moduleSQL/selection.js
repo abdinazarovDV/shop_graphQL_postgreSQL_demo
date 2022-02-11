@@ -146,6 +146,7 @@ export default {
             end
         group by p.product_id
         order by count desc
+        offset $3 limit $4
     `
 
 }

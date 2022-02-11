@@ -20,12 +20,12 @@ export default {
             }
         },
 
-        totalMoney: async (_, { product_id }) => {
+        totalMoney: async (_, { product_id, page, limit }) => {
 
             // 2678400000 - 1 month in milliseconds
 
             let time = Date.now() - 2678400000
-            let result = await res.fetchAll(sqlQuerySel.totalMoney, product_id, time)
+            let result = await res.fetchAll(sqlQuerySel.totalMoney, product_id, time, page * limit - limit, limit)
             let totalMoney = 0
             result.map(el => totalMoney += +el.total)
             return {
