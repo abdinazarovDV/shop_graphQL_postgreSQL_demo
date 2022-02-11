@@ -1,0 +1,27 @@
+type Query {
+    getOrderforUser: [Order!]!
+}
+
+type Order {
+    order_id: ID!,
+    category_name: String!,
+    product_name: String!,
+    price: Int!,
+    short_desc: String!,
+    long_desc: String!,
+    picture: String!,
+}
+
+type Mutation {
+    add_order(
+        product_id: ID!
+    ): Any,
+
+    delete_order(
+        order_id: ID!
+    ): Any,
+
+    paid(
+        order_id: ID!,
+    ): Any
+}

@@ -1,0 +1,56 @@
+scalar Upload
+
+type Query {
+    ordersForAdmin(
+        order_id: ID,
+        user_id: ID = 0,
+        username: String = "",
+        contact: Contact = "",
+        product_id: ID = 0,
+        product_name: String = "",
+        price: Int = 0,
+        category_id: ID = 0
+    ): Any,
+
+    totalMoney(
+        product_id: ID
+    ): Any
+}
+
+type Mutation {
+    add_category(
+        category_name: String!,
+    ): Any,
+
+    edit_category(
+        category_name: String!,
+        category_id: ID!
+    ): Any,
+
+    delete_category(
+        category_id: ID!
+    ): Any,
+
+    add_product(
+        categiry_id: ID!,
+        product_name: String!
+        price: ID!,
+        short_desc: String!,
+        long_desc: String!,
+        file: Upload!
+    ): Any,
+
+    edit_product(
+        product_id: ID!,
+        price: Int = 0,
+        short_desc: String = "",
+        long_desc: String = "",
+        product_name: String = "",
+        file: Upload
+        category_id: ID = 0,
+    ): Any,
+
+    delete_product(
+        product_id: ID!
+    ): Any
+}
