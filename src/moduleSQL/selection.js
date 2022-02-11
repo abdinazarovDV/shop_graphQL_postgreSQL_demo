@@ -64,7 +64,8 @@ export default {
             p.product_id,
             p.product_name,
             p.price,
-            p.category_id
+            p.category_id,
+            o.time
         from orders as o
         inner join products as p on o.product_id = p.product_id
         inner join users as u on u.user_id = o.user_id
