@@ -20,6 +20,7 @@ export default function ({ req }) {
         let { token } = req.headers
         let { user_id, agent } = Token.verify(token)
         // [admin's user_ids]
+        if (!req.headers['user-agent'] == agent) throw new Error("Anather user")
         if ([1].includes(user_id)) {
             return {
                 user_id
