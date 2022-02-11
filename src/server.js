@@ -7,6 +7,7 @@ import { graphqlUploadExpress } from 'graphql-upload'
 import express from 'express';
 import http from 'http';
 import { makeExecutableSchema } from '@graphql-tools/schema'
+import path from 'path'
 const PORT = process.env.PORT || 4000 || Date.now() % 10000
 import '../config.js'
 import modules from './modules/index.js'
@@ -21,6 +22,7 @@ const schema = makeExecutableSchema({
 async function startApolloServer(typeDefs, resolvers) {
     const app = express();
     app.use(graphqlUploadExpress());
+    app.use(express.static(path.join(process.cwd(), 'src')))
 
     const httpServer = http.createServer(app);
 

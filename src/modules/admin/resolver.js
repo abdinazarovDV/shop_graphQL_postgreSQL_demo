@@ -25,7 +25,7 @@ export default {
             // 2678400000 - 1 month in milliseconds
 
             let time = Date.now() - 2678400000
-            let result = await res.fetchAll(sqlQuerySel.totalMoney, product_id, time, page * limit - limit, limit)
+            let result = await res.fetchAll(sqlQuerySel.totalMoney, product_id, time, page * li mit - limit, limit)
             let totalMoney = 0
             result.map(el => totalMoney += +el.total)
             return {
